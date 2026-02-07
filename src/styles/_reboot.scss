@@ -1,0 +1,555 @@
+﻿// stylelint-disable at-rule-no-vendor-prefix, declaration-no-important, selector-no-qualifying-type, property-no-vendor-prefix
+
+// 样式重置（Reboot）
+//
+// 对 HTML 元素进行标准化样式处理，手动复刻自 Normalize.css，
+// 移除了针对非兼容浏览器的样式，同时新增了自定义样式。
+//
+// Normalize.css 采用 MIT 许可证开源。https://github.com/necolas/normalize.css
+
+
+// 文档基础样式
+//
+// 将盒模型从 `box-sizing: content-box` 改为 border-box，
+// 这样元素的 `width` 不会被 `padding` 或 `border` 影响。
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// 页面主体（Body）
+//
+// 1. 移除所有浏览器默认的外边距。
+// 2. 作为最佳实践，设置默认的 `background-color`。
+// 3. 防止 IE（Windows Phone）和 iOS 设备在屏幕旋转后调整字体大小。
+// 4. 将 iOS 设备中点击元素时的默认高亮效果改为完全透明。
+body {
+  margin: 0; // 1
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  font-weight: $font-weight-base;
+  line-height: $line-height-base;
+  color: $body-color;
+  text-align: $body-text-align;
+  background-color: $body-bg; // 2
+  -webkit-text-size-adjust: 100%; // 3
+  -webkit-tap-highlight-color: rgba($black, 0); // 4
+}
+
+// 前瞻性规则：在支持 :focus-visible 伪类的浏览器中，
+// 对「通过编程方式获取焦点但通常不会显示焦点轮廓」的元素，隐藏焦点轮廓。
+// 通常情况下，这意味着只有当导致元素获取编程焦点的交互是键盘操作，
+// 或者浏览器判定用户主要使用键盘操作/希望始终显示焦点轮廓时，才会显示轮廓。
+//
+// 参考：https://developer.mozilla.org/zh-CN/docs/Web/CSS/:focus-visible
+// 以及：https://developer.paciellogroup.com/blog/2018/03/focus-visible-and-backwards-compatibility/
+
+[tabindex="-1"]:focus:not(:focus-visible) {
+  outline: 0 !important;
+}
+
+
+// 内容分组元素
+//
+// 1. 重置 Firefox 浏览器中 hr 元素默认的灰色
+// 2. 设置正确的高度，并防止 `size` 属性让 `hr` 看起来像输入框
+//    参考：https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_hr_size
+
+hr {
+  margin: $hr-margin-y 0;
+  color: $hr-color; // 1
+  background-color: currentColor;
+  border: 0;
+  opacity: $hr-opacity;
+}
+
+hr:not([size]) {
+  height: $hr-height; // 2
+}
+
+
+// 排版样式
+//
+// 1. 移除标题元素的顶部外边距
+//    默认情况下，`<h1>`-`<h6>` 都会有上下外边距。我们移除顶部外边距，
+//    以便在字体层级控制中更灵活，避免外边距折叠问题。
+
+%heading {
+  margin-top: 0; // 1
+  margin-bottom: $headings-margin-bottom;
+  font-family: $headings-font-family;
+  font-style: $headings-font-style;
+  font-weight: $headings-font-weight;
+  line-height: $headings-line-height;
+  color: $headings-color;
+}
+
+h1 {
+  @extend %heading;
+  font-size: $h1-font-size;
+}
+
+h2 {
+  @extend %heading;
+  font-size: $h2-font-size;
+}
+
+h3 {
+  @extend %heading;
+  font-size: $h3-font-size;
+}
+
+h4 {
+  @extend %heading;
+  font-size: $h4-font-size;
+}
+
+h5 {
+  @extend %heading;
+  font-size: $h5-font-size;
+}
+
+h6 {
+  @extend %heading;
+  font-size: $h6-font-size;
+}
+
+
+// 重置段落的外边距
+//
+// 同样地，`<p>` 标签的顶部外边距被重置。同时，我们将底部外边距
+// 从 `em` 单位改为 `rem` 单位，保证尺寸一致性。
+
+p {
+  margin-top: 0;
+  margin-bottom: $paragraph-margin-bottom;
+}
+
+
+// 缩写标签（Abbreviations）
+//
+// 1. 为工具提示插件复现 data-* 属性的行为
+// 2. 在 Chrome、Edge、IE、Opera 和 Safari 中添加正确的文本装饰。
+// 3. 添加明确的光标样式，提示用户该元素行为已改变。
+// 4. 防止文本装饰被跳过（保证点线下划线显示）。
+
+abbr[title],
+abbr[data-original-title] { // 1
+  text-decoration: underline; // 2
+  text-decoration: underline dotted; // 2
+  cursor: help; // 3
+  text-decoration-skip-ink: none; // 4
+}
+
+
+address {
+  margin-bottom: 1rem;
+  font-style: normal;
+  line-height: inherit;
+}
+
+ol,
+ul {
+  padding-left: 2rem;
+}
+
+ol,
+ul,
+dl {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+ol ol,
+ul ul,
+ol ul,
+ul ol {
+  margin-bottom: 0;
+}
+
+dt {
+  font-weight: $dt-font-weight;
+}
+
+// 1. 取消浏览器默认样式
+
+dd {
+  margin-bottom: .5rem;
+  margin-left: 0; // 1
+}
+
+blockquote {
+  margin: 0 0 1rem;
+}
+
+// 在 Chrome、Edge 和 Safari 中设置正确的字体粗细
+
+b,
+strong {
+  font-weight: $font-weight-bolder;
+}
+
+
+// 在所有浏览器中设置正确的字体大小
+
+small {
+  font-size: $small-font-size;
+}
+
+// 防止 `sub` 和 `sup` 元素影响所有浏览器中的行高。
+
+sub,
+sup {
+  position: relative;
+  font-size: $sub-sup-font-size;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+sub { bottom: -.25em; }
+sup { top: -.5em; }
+
+
+// 链接样式
+
+a {
+  color: $link-color;
+  text-decoration: $link-decoration;
+
+  &:hover {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+}
+
+// 为占位符链接/命名锚点（无 href 属性）重置上述样式。
+// 理论上可以在上面的样式块中直接使用 a[href] 选择器，但这会导致
+// 其他许多样式的优先级问题，修复成本过高。
+// 参考：https://github.com/twbs/bootstrap/issues/19402
+
+a:not([href]) {
+  &,
+  &:hover {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+
+// 代码相关元素
+
+pre,
+code,
+kbd,
+samp {
+  font-family: $font-family-monospace;
+  font-size: 1em; // 修正所有浏览器中 `em` 字体大小的异常问题。
+}
+
+// 1. 移除浏览器默认的顶部外边距
+// 2. 将浏览器默认的 `1em` 外边距重置为 `rem` 单位
+// 3. 防止内容溢出容器
+
+pre {
+  display: block;
+  margin-top: 0; // 1
+  margin-bottom: 1rem; // 2
+  overflow: auto; // 3
+  font-size: $code-font-size;
+  color: $pre-color;
+
+  // 适配部分代码输出场景中，pre 标签内嵌套 code 标签的情况
+  code {
+    font-size: inherit;
+    color: inherit;
+    word-break: normal;
+  }
+}
+
+code {
+  font-size: $code-font-size;
+  color: $code-color;
+  word-wrap: break-word;
+
+  // 优化链接内嵌套 code 标签的样式，避免下划线断裂等问题
+  a > & {
+    color: inherit;
+  }
+}
+
+
+// 图形容器（Figures）
+
+// 应用统一的外边距策略（与排版样式保持一致）。
+
+figure {
+  margin: 0 0 1rem;
+}
+
+
+// 图片和内容元素
+
+img {
+  vertical-align: middle;
+}
+
+// 1. IE 11 中 SVG 溢出问题的兼容方案仍需保留。
+//    参考：https://github.com/twbs/bootstrap/issues/26878
+
+svg {
+  overflow: hidden; // 1
+  vertical-align: middle;
+}
+
+
+// 表格样式
+
+// 防止表格出现双边框
+
+table {
+  border-collapse: collapse;
+}
+
+caption {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  color: $text-muted;
+  text-align: left;
+  caption-side: bottom;
+}
+
+// 继承 `<body>` 或最近的父元素的文本对齐方式，匹配默认 `<td>` 的对齐行为。
+
+th {
+  text-align: inherit;
+}
+
+
+// 表单样式
+
+// 1. 允许标签使用 `margin` 进行间距控制。
+
+label {
+  display: inline-block; // 1
+  margin-bottom: .5rem;
+}
+
+// 移除 macOS Chrome 浏览器默认添加的 `border-radius`。
+//
+// 详情：https://github.com/twbs/bootstrap/issues/24093
+
+button {
+  // stylelint-disable-next-line property-blacklist
+  border-radius: 0;
+}
+
+// 修复 Firefox/IE 浏览器中，透明背景的 `button` 元素丢失默认焦点样式的问题。
+//
+// 参考：https://github.com/suitcss/base/
+
+button:focus {
+  outline: 1px dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+}
+
+// 1. 移除 Firefox 和 Safari 中的默认外边距
+
+input,
+button,
+select,
+optgroup,
+textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+// 在 Edge 浏览器中显示溢出内容
+
+button,
+input {
+  overflow: visible;
+}
+
+// 移除 Firefox 中按钮文本转换的继承行为
+
+button,
+select {
+  text-transform: none;
+}
+
+// 移除 Safari 中选择框的 word-wrap 继承行为。
+//
+// 详情：https://github.com/twbs/bootstrap/issues/24990
+
+select {
+  word-wrap: normal;
+}
+
+// 移除 Chrome 浏览器中，基于 datalist 构建的输入框的下拉箭头。
+//
+// 来源：https://stackoverflow.com/a/54997118
+
+[list]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+// 1. 修复 Android 4 中 `audio` 和 `video` 原生控件被破坏的 WebKit 漏洞。
+// 2. 修正 iOS 和 Safari 中无法样式化可点击元素的问题。
+// 3. 自定义样式：为非禁用状态的按钮添加「手型」光标。
+
+button,
+[type="button"], // 1
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button; // 2
+
+  @if $enable-pointer-cursor-for-buttons {
+    &:not(:disabled) {
+      cursor: pointer; // 3
+    }
+  }
+}
+
+
+// 移除 Firefox 中的内边距和内边框，但不像 Normalize.css 那样恢复轮廓线。
+
+::-moz-focus-inner {
+  padding: 0;
+  border-style: none;
+}
+
+
+// 移除时间类输入框的默认样式，避免 Mobile Safari 中设置自定义行高后，
+// 文本无法在输入框内垂直居中的问题。
+// 参考：https://bugs.webkit.org/show_bug.cgi?id=139848
+// 以及：https://github.com/twbs/bootstrap/issues/11266
+
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="month"] {
+  -webkit-appearance: textfield;
+}
+
+// 1. 移除 IE 浏览器中默认的垂直滚动条。
+// 2. 文本域应仅允许垂直调整大小，避免破坏其（水平）容器布局。
+
+textarea {
+  overflow: auto; // 1
+  resize: vertical;  // 2
+}
+
+// 1. 浏览器为 fieldset 元素设置了默认的 `min-width: min-content;`，
+//    而 `<div>` 等元素默认是 `min-width: 0;`。
+//    因此重置该属性，让 fieldset 表现更接近标准块级元素。
+//    参考：https://github.com/twbs/bootstrap/issues/12359
+//    以及：https://html.spec.whatwg.org/multipage/#the-fieldset-and-legend-elements
+// 2. 重置 fieldset 元素的默认轮廓行为，避免影响页面布局。
+
+fieldset {
+  min-width: 0; // 1
+  padding: 0;  // 2
+  margin: 0; // 2
+  border: 0; // 2
+}
+
+
+// 1. 通过 `float: left` 让 legend 元素表现得像块级元素
+// 2. 修正 IE 浏览器中 legend 从 fieldset 继承颜色的问题。
+// 3. 修正 Edge 和 IE 中的文本换行问题。
+
+legend {
+  float: left; // 1
+  width: 100%;
+  padding: 0;
+  margin-bottom: $legend-margin-bottom;
+  font-size: $legend-font-size;
+  font-weight: $legend-font-weight;
+  line-height: inherit;
+  color: inherit; // 2
+  white-space: normal; // 3
+}
+
+
+mark {
+  padding: $mark-padding;
+  background-color: $mark-bg;
+}
+
+// 在 Chrome、Firefox 和 Opera 中添加正确的垂直对齐方式。
+
+progress {
+  vertical-align: baseline;
+}
+
+
+// 修复 datetime-local、date、month、week、time 类型输入框的高度问题
+// 参考：https://github.com/twbs/bootstrap/issues/18842
+
+::-webkit-datetime-edit {
+  overflow: visible;
+  line-height: 0;
+}
+
+
+// 1. 修正 Safari 中的轮廓样式。
+// 2. 覆盖 iOS 中搜索输入框额外的圆角样式，确保 `.form-control` 类能正确样式化它们。
+//    注意：该样式不能简单添加到 `.form-control` 中，因为优先级不足。详情见：
+//    https://github.com/twbs/bootstrap/issues/11586.
+
+[type="search"] {
+  outline-offset: -2px; // 1
+  -webkit-appearance: textfield; // 2
+}
+
+// 移除 Chrome 和 macOS Safari 中的内部填充。
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+// 移除 webkit 浏览器中颜色选择器的内边距
+
+::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+// 1. 在 Safari 中将字体属性改为 `inherit`。
+// 2. 修正 iOS 和 Safari 中无法样式化可点击类型元素的问题。
+
+::-webkit-file-upload-button {
+  font: inherit; // 1
+  -webkit-appearance: button; // 2
+}
+
+// 修正元素显示方式
+
+output {
+  display: inline-block;
+}
+
+// 1. 在所有浏览器中添加正确的显示方式
+
+summary {
+  display: list-item; // 1
+  cursor: pointer;
+}
+
+// 为 IE 11 修正 template 和 main 元素的显示方式
+
+template {
+  display: none;
+}
+
+main {
+  display: block;
+}
+
+// 始终隐藏带有 `hidden` HTML 属性的元素。
+
+[hidden] {
+  display: none !important;
+}
