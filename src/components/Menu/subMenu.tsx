@@ -2,6 +2,9 @@ import React, { useContext, useState } from 'react'
 import classNames from 'classnames'
 import { MenuContext } from './menu'
 import { type MenuItemProps } from './menuItem'
+import Icon from '../Icon/icon'
+import { CSSTransition } from 'react-transition-group'
+import Transition from '../Transition/transition'
 
 export interface SubMenuProps {
   index?: string;
@@ -11,12 +14,15 @@ export interface SubMenuProps {
 }
 
 const SubMenu: React.FC<SubMenuProps> = ({ index, title, children, className }) => {
+    const subMenuRef = React.useRef<HTMLUListElement>(null)
     const context = useContext(MenuContext)
     const openedSubMenus = context.defaultOpenSubMenus ?? []
     const isOpened = (index && context.mode === 'vertical') ? openedSubMenus.includes(index) : false
     const [menuOpen, setOpen] = useState(isOpened)
     const classes = classNames('menu-item submenu-item', className, {
-      'is-active': context.index === index
+      'is-active': context.index === index,
+      'is-opened': menuOpen,
+      'is-vertical': context.mode === 'vertical'
     })
     const handleClick = (e: React.MouseEvent) => {
       e.preventDefault()
@@ -55,9 +61,16 @@ const SubMenu: React.FC<SubMenuProps> = ({ index, title, children, className }) 
             }
         })
         return (
-            <ul className={subMenuClasses}>
+            <Transition
+              in={menuOpen}
+              timeout={300}
+              animation="zoom-in-top"
+              nodeRef={subMenuRef}
+            >
+            <ul ref={subMenuRef} className={subMenuClasses}>
                 {childrenComponent}
             </ul>
+            </Transition>
         )
     }
   
@@ -65,6 +78,7 @@ const SubMenu: React.FC<SubMenuProps> = ({ index, title, children, className }) 
       <li key={index} className={classes} {...hoverEvents}>
         <div className="submenu-title" {...clickEvents}>
           {title}
+          <Icon icon="angle-down" className="arrow-icon" />
         </div>
         {renderChildren()}
       </li>

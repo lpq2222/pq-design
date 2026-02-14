@@ -48,12 +48,13 @@
     .arrow-icon {
       transform: rotate(180deg) !important;
     }
-  }
+  } 
   .pq-submenu {
-    display: none;
+    opacity: 0;
     list-style: none;
     padding-left: 0;
     white-space: nowrap;
+    transition: opacity 0.5s ease-in-out;
     .menu-item {
       padding: $menu-item-padding-y $menu-item-padding-x;
       cursor: pointer;
@@ -66,7 +67,8 @@
   }
   .pq-submenu.menu-opened {
     // 展开时显示，可配合 JS 控制
-    display: block;
+    // display: block;
+    opacity: 1;
   }
 }
 
