@@ -23,7 +23,7 @@ interface IMenuContext {
 }
 
 export const MenuContext = createContext<IMenuContext>({ index: '0', onSelect: undefined, defaultOpenSubMenus: [] })
-const Menu: React.FC<MenuProps> = (props) => {
+export const Menu: React.FC<MenuProps> = (props) => {
     const { className, mode = 'horizontal', style, children, defaultIndex = '0', onSelect, defaultOpenSubMenus = []} = props
     const [currentActive, setActive] = useState(defaultIndex)
     const classees = classNames('pq-menu', className, {
