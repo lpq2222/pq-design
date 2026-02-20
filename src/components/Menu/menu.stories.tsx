@@ -34,8 +34,8 @@ export const Default: Story = {
             <MenuItem>cool link3</MenuItem>
         </Menu>
     ),
+    name: '默认菜单',
 };
-Default.storyName = '默认菜单';
 
 export const Vertical: Story = {
     args: {
@@ -54,5 +54,5 @@ export const Vertical: Story = {
             <MenuItem>cool link3</MenuItem>
         </Menu>
     ),
+    name: '竖向菜单',
 };
-Vertical.storyName = '竖向菜单';

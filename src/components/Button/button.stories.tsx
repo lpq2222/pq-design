@@ -72,8 +72,8 @@ export const Default: Story = {
     args: {
         children: 'Default Button',
     },
+    name: 'Default',
 };
-Default.storyName = 'Default';
 
 export const Large: Story = {
     render: Template,
@@ -81,8 +81,8 @@ export const Large: Story = {
         size: ButtonSize.Large,
         children: 'Large Button',
     },
+    name: 'Large',
 };
-Large.storyName = 'Large';
 
 export const Small: Story = {
     render: Template,
@@ -90,8 +90,8 @@ export const Small: Story = {
         size: ButtonSize.Small,
         children: 'Small Button',
     },
+    name: 'Small',
 };
-Small.storyName = 'Small';
 
 export const Primary: Story = {
     render: Template,
@@ -99,8 +99,8 @@ export const Primary: Story = {
         btnType: ButtonType.Primary,
         children: 'Primary Button',
     },
+    name: 'Primary',
 };
-Primary.storyName = 'Primary';
 
 export const Danger: Story = {
     render: Template,
@@ -108,8 +108,8 @@ export const Danger: Story = {
         btnType: ButtonType.Danger,
         children: 'Danger Button',
     },
+    name: 'Danger',
 };
-Danger.storyName = 'Danger';
 
 export const Link: Story = {
     render: Template,
@@ -118,5 +118,5 @@ export const Link: Story = {
         children: 'Link Button',
         href: 'https://www.google.com',
     },
+    name: 'Link',
 };
-Link.storyName = 'Link';

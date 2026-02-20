@@ -12,7 +12,7 @@ interface GithubUserProps {
 }
 
 const meta: Meta<typeof AutoComplete> = {
-  title: 'AutoComplete 组件',
+  title: 'AutoComplete',
   component: AutoComplete,
   id: 'AutoComplete',
   tags: ['autodocs'],
@@ -42,7 +42,7 @@ export const Simple: Story = {
       />
     )
   },
-  storyName: '1 基本的搜索',
+  name: '1 基本的搜索',
 }
 
 export const CustomTemplate: Story = {
@@ -79,7 +79,7 @@ export const CustomTemplate: Story = {
       />
     )
   },
-  storyName: '2 自定义搜索结果模版',
+  name: '2 自定义搜索结果模版',
 }
 
 export const AsyncSearch: Story = {
@@ -108,5 +108,5 @@ export const AsyncSearch: Story = {
       />
     )
   },
-  storyName: '3 支持异步搜索',
+  name: '3 支持异步搜索',
 }

@@ -27,7 +27,7 @@ export const Default: Story = {
   args: {
     placeholder: 'default Input',
   },
-  storyName: '默认的 Input',
+  name: '默认的 Input',
 }
 
 export const Disabled: Story = {
@@ -36,7 +36,7 @@ export const Disabled: Story = {
     placeholder: 'disabled input',
     disabled: true,
   },
-  storyName: '被禁用的 Input',
+  name: '被禁用的 Input',
 }
 
 export const WithIcon: Story = {
@@ -45,7 +45,7 @@ export const WithIcon: Story = {
     placeholder: 'input with icon',
     icon: faSearch,
   },
-  storyName: '带图标的 Input',
+  name: '带图标的 Input',
 }
 
 export const Sizes: Story = {
@@ -55,7 +55,7 @@ export const Sizes: Story = {
       <Input placeholder="small size" size="sm" />
     </>
   ),
-  storyName: '大小不同的 Input',
+  name: '大小不同的 Input',
 }
 
 export const PrependAppend: Story = {
@@ -65,5 +65,5 @@ export const PrependAppend: Story = {
       <Input defaultValue="google" append=".com" />
     </>
   ),
-  storyName: '带前后缀的 Input',
+  name: '带前后缀的 Input',
 }

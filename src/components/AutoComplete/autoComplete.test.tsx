@@ -84,8 +84,10 @@ describe('test AutoComplete component', () => {
     await waitFor(() => {
       expect(wrapper.queryByText('ab')).toBeInTheDocument()
     })
-    fireEvent.click(document)
-    expect(wrapper.queryByText('ab')).not.toBeInTheDocument()
+    fireEvent.mouseDown(document.body)
+    await waitFor(() => {
+      expect(wrapper.queryByText('ab')).not.toBeInTheDocument()
+    })
   })
   it('renderOption should generate the right template', async () => {
     const wrapper = render(<AutoComplete {...testPropsWithCustomRender}/>)
