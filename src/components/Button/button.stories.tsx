@@ -3,7 +3,7 @@ import Button from './button';
 import { ButtonSize, ButtonType } from './types';
 
 const meta: Meta<typeof Button> = {
-    title: '第四章：Button',
+    title: 'Button',
     component: Button,
     tags: ['autodocs'],
     argTypes: {

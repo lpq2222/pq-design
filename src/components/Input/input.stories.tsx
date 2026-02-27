@@ -4,7 +4,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { Input } from './input'
 
 const meta: Meta<typeof Input> = {
-  title: '第九章：Input',
+  title: 'Input',
   id: 'Input',
   component: Input,
   tags: ['autodocs'],

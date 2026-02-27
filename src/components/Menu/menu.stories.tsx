@@ -4,7 +4,7 @@ import { MenuItem } from './menuItem';
 import { SubMenu } from './subMenu';
 
 const meta: Meta<typeof Menu> = {
-    title: '第六章：Menu',
+    title: 'Menu',
     id: 'Menu',
     component: Menu,
     subcomponents: {

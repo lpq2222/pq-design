@@ -1,0 +1,106 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction" />
+
+<div className="intro-page">
+  <div className="intro-hero">
+    <h1 className="intro-title">pq component library</h1>
+    <p className="intro-subtitle">基于 React 18 + TypeScript 的轻量级 UI 组件库</p>
+  </div>
+
+  <section className="intro-section">
+    <h2>关于本项目</h2>
+    <p>
+      pq 组件库使用 <strong>React 18</strong>、<strong>TypeScript</strong>、<strong>Vite</strong> 构建，
+      在 Storybook 中展示与调试组件，样式采用 <strong>Sass</strong>，类名统一使用 <code>pq-</code> 前缀。
+    </p>
+  </section>
+
+  <section className="intro-section">
+    <h2>组件列表</h2>
+    <p>左侧导航可查看各组件的文档与示例：</p>
+    <ul className="intro-component-list">
+      <li><strong>Button</strong> — 按钮，支持多种类型与尺寸</li>
+      <li><strong>Input</strong> — 输入框</li>
+      <li><strong>Menu</strong> — 菜单</li>
+      <li><strong>Upload</strong> — 文件上传</li>
+      <li><strong>Form</strong> — 表单与校验</li>
+      <li><strong>AutoComplete</strong> — 自动完成</li>
+    </ul>
+  </section>
+
+  <section className="intro-section">
+    <h2>开始使用</h2>
+    <p>
+      从左侧选择任意组件即可查看 Props 说明与交互示例；每个组件均支持 <code>autodocs</code>，可在 Docs 面板中查看完整 API。
+    </p>
+  </section>
+</div>
+
+<style>
+  {`
+  .intro-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 16px 48px;
+  }
+
+  .intro-hero {
+    text-align: center;
+    margin-bottom: 48px;
+    padding: 32px 24px;
+    background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .intro-title {
+    margin: 0 0 12px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    letter-spacing: -0.02em;
+  }
+
+  .intro-subtitle {
+    margin: 0;
+    font-size: 1rem;
+    color: #555;
+  }
+
+  .intro-section {
+    margin-bottom: 32px;
+  }
+
+  .intro-section h2 {
+    margin: 0 0 12px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a1a2e;
+  }
+
+  .intro-section p {
+    margin: 0 0 8px;
+    line-height: 1.6;
+    color: #444;
+  }
+
+  .intro-section code {
+    padding: 2px 6px;
+    font-size: 0.9em;
+    background: #f0f0f0;
+    border-radius: 4px;
+  }
+
+  .intro-component-list {
+    margin: 12px 0 0;
+    padding-left: 24px;
+    line-height: 1.8;
+    color: #444;
+  }
+
+  .intro-component-list strong {
+    color: #1a1a2e;
+  }
+  `}
+</style>

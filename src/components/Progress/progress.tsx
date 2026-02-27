@@ -1,5 +1,6 @@
-import React, { FC } from 'react'
-import { ThemeProps } from '../Icon/icon'
+import React from 'react'
+import type { FC } from 'react'
+import type { ThemeProps } from '../Icon/icon'
 export interface ProgressProps {
   percent: number;
   strokeHeight?: number;
@@ -11,10 +12,10 @@ export interface ProgressProps {
 const Progress: FC<ProgressProps> = (props) => {
   const {
     percent,
-    strokeHeight,
-    showText,
+    strokeHeight = 15,
+    showText = true,
     styles,
-    theme,
+    theme = 'primary',
   } = props
   return (
     <div className="pq-progress-bar" style={styles}>
@@ -30,9 +31,4 @@ const Progress: FC<ProgressProps> = (props) => {
   )
 }
 
-Progress.defaultProps = {
-  strokeHeight: 15,
-  showText: true,
-  theme: "primary",
-}
-export default Progress;
+export default Progress

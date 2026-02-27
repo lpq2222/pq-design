@@ -5,7 +5,7 @@ import { ButtonSize, ButtonType } from '../Button/types'
 import Icon from '../Icon/icon'
 
 const meta: Meta<typeof Upload> = {
-  title: '第十章：Upload',
+  title: 'Upload',
   id: 'Upload',
   component: Upload,
   parameters: {
